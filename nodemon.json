@@ -1,6 +1,6 @@
 {
   "nodemonConfig": {
-    "ignore": ["**/*.test.ts", "**/*.spec.ts", ".git", "node_modules"],
+    "ignore": ["**/*.test.ts", "**/*.spec.ts", ".git", "node_modules", "tsconfg.json"],
     "watch": ["server"],
     "exec": "yarn start",
     "ext": "ts"
