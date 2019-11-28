@@ -9,7 +9,7 @@ export const useStyles = createUseStyles({
     alignItems: 'center',
   },
 
-  bandImage: {
+  albumImage: {
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -23,30 +23,10 @@ export const useStyles = createUseStyles({
     whiteSpace: 'nowrap',
   },
 
-  genre: {
-    fontWeight: 'bold',
-    fontSize: 11,
-    textTransform: 'capitalize',
-    color: colors.primaryOrange,
-  },
-
-  bandInfo: {
+  albumInfo: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'left',
-  },
-
-  bandPlays: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    paddingRight: 15,
-  },
-
-  plays: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: colors.primaryGray,
   },
 });

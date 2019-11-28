@@ -18,9 +18,10 @@ export const useStyles = createUseStyles({
       height: '100%',
       width: '100%',
       padding: 5,
-      fontSize: 16,
       color: 'gray',
+      fontSize: 16,
       fontFamily: 'Montserrat',
+      textTransform: 'capitalize',
 
       '&:focus': {
         outline: 'none',
@@ -31,6 +32,12 @@ export const useStyles = createUseStyles({
       width: 30,
       height: 30,
       marginLeft: 10,
+
+      '&:last-child': {
+        width: 55,
+        height: 20,
+        marginRight: 10,
+      },
     },
   },
 });

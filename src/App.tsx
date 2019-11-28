@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { observer } from 'mobx-react';
 import './App.css';
 import { AppRouter } from './Router/index.jsx';
 import { createUseStyles } from 'react-jss';
-import Navbar from './Components/Navbar';
+import { LoadingContext } from './Contexts/Loading.context';
+import AppLoader from './Components/Loader';
 
 const useStyles = createUseStyles({
   AppView: {
@@ -16,15 +18,18 @@ const useStyles = createUseStyles({
   },
 });
 
-const App: React.FC = () => {
+const App: React.FC = observer(() => {
+  const store = useContext(LoadingContext);
   return (
     <>
-      <div className={useStyles().AppView}>
-        <AppRouter />
-        <Navbar location="/bands" />
-      </div>
+      <LoadingContext.Provider value={store}>
+        <div className={useStyles().AppView}>
+          <AppRouter />
+        </div>
+        <AppLoader visible={store.isLoading} />
+      </LoadingContext.Provider>
     </>
   );
-};
+});
 
 export default App;

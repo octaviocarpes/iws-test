@@ -8,7 +8,11 @@ export class AlbumStore {
     this.albums = albums;
   }
 
+  private buildAlbumName(name: string): string {
+    return `${name.charAt(0).toUpperCase()}${name.substr(1, name.length)}`;
+  }
+
   public filterAlbumsByName(albumName: string): Album[] {
-    return this.albums.filter(album => album.name.startsWith(albumName));
+    return this.albums.filter(album => album.name.startsWith(this.buildAlbumName(albumName)));
   }
 }

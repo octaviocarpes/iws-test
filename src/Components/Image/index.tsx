@@ -6,19 +6,23 @@ interface Props {
   alt: string;
 }
 
-const Image = (props: Props): ReactElement => {
-  const [src, setSrc] = useState(props.src);
+const ImageComponent = (props: Props): ReactElement => {
+  const [error, setError] = useState(false);
 
   const onError = (): void => {
-    setSrc(props.fallbackSrc);
+    setError(true);
   };
 
   return (
     <>
-      <img alt={props.alt} src={src} onError={(): void => onError()} />
+      {error ? (
+        <img alt={props.alt} src={props.fallbackSrc} />
+      ) : (
+        <img alt={props.alt} src={props.src} onError={(): void => onError()} />
+      )}
     </>
   );
 };
 
-Image.displayName = 'Image';
-export default Image;
+ImageComponent.displayName = 'Image';
+export default ImageComponent;

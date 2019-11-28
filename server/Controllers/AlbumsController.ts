@@ -1,6 +1,5 @@
 import { AlbumsService } from '../Services';
 import { Album } from '../Models';
-
 export class AlbumsController {
   private albumsService: AlbumsService;
   private albums: Album[];
@@ -21,6 +20,8 @@ export class AlbumsController {
     if (!this.albums.length) {
       try {
         const { data } = await this.albumsService.getAlbums();
+        // Todo: implement pagination
+        // this.albums = data.slice(0, 10);
         this.albums = data;
         return this.albums;
       } catch (error) {

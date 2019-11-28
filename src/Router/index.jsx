@@ -2,14 +2,15 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Router } from '@reach/router';
-import { Albums, Bands } from '../Views';
+import { Albums, Bands, Band } from '../Views';
 
 export const AppRouter = () => {
   return (
     <>
       <Router style={{ width: '100%' }}>
-        <Bands default path="bands" />
-        <Albums path="albums" />
+        <Bands default path="/bands" />
+        <Band path="/band/:id" />
+        <Albums path="/albums" />
       </Router>
     </>
   );

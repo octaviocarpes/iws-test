@@ -5,8 +5,10 @@ export const useStyles = createUseStyles({
   navbar: {
     position: 'fixed',
     bottom: 10,
+    left: '50%',
+    transform: 'translate(-50%)',
     width: '80%',
-    height: 75,
+    height: 50,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

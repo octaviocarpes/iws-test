@@ -20,7 +20,7 @@ const Navbar = memo(
     };
 
     const navigateTo = (url: string): void => {
-      setLocation(`/${url}`);
+      setLocation(`${url}`);
       navigate(url);
     };
 
@@ -28,10 +28,10 @@ const Navbar = memo(
       <>
         <div className={styles.navbar}>
           <nav className={styles.nav}>
-            <button className={getStyles('/bands')} onClick={(): void => navigateTo('bands')}>
+            <button className={getStyles('/bands')} onClick={(): void => navigateTo('/bands')}>
               Bands
             </button>
-            <button className={getStyles('/albums')} onClick={(): void => navigateTo('albums')}>
+            <button className={getStyles('/albums')} onClick={(): void => navigateTo('/albums')}>
               Albums
             </button>
           </nav>

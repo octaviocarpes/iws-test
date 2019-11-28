@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
-  bandView: {
+  albumView: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -16,11 +16,11 @@ export const useStyles = createUseStyles({
     marginTop: 10,
   },
 
-  bandsWrapper: {
+  albumsWrapper: {
     width: '100%',
   },
 
-  bandsList: {
+  albumsList: {
     width: '100%',
     listStyle: 'none',
     display: 'flex',

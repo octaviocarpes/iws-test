@@ -1,5 +1,5 @@
 import React, { memo, ReactElement } from 'react';
-import { Band } from '../../Models/Band';
+import { Album } from '../../Models/Album';
 import { useStyles } from './styles';
 import fallbackImage from '../../styles/img/album-icon.png';
 
@@ -7,13 +7,13 @@ import Image from '../Image';
 import Card from '../Card';
 
 interface Props {
-  band: Band;
+  album: Album;
   onTouch?: () => void;
 }
 
-const BandCard = memo(
+const AlbumCard = memo(
   (props: Props): ReactElement => {
-    const { band, onTouch } = props;
+    const { album, onTouch } = props;
     const styles = useStyles();
 
     const _handleTouchEnd = (): void => {
@@ -24,17 +24,12 @@ const BandCard = memo(
       <>
         <Card onTouch={(): void => _handleTouchEnd()}>
           <div className={styles.cardWrapper}>
-            <div className={styles.bandImage}>
-              <Image alt={`${band.name}-image`} src={band.image} fallbackSrc={fallbackImage} />
+            <div className={styles.albumImage}>
+              <Image alt={`${album.name}-image`} src={album.image} fallbackSrc={fallbackImage} />
             </div>
-            <div className={styles.bandInfo}>
-              <p className={styles.name}>{band.name}</p>
-              <p className={styles.genre}>{band.genre}</p>
+            <div className={styles.albumInfo}>
+              <p className={styles.name}>{album.name}</p>
             </div>
-          </div>
-
-          <div className={styles.bandPlays}>
-            <p className={styles.plays}>Plays: {band.numPlays}</p>
           </div>
         </Card>
       </>
@@ -42,5 +37,5 @@ const BandCard = memo(
   },
 );
 
-BandCard.displayName = 'BandCard';
-export default BandCard;
+AlbumCard.displayName = 'AlbumCard';
+export default AlbumCard;
