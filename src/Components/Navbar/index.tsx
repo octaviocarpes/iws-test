@@ -1,6 +1,6 @@
-import React, { ReactElement, memo } from 'react';
-import { Link } from '@reach/router';
+import React, { ReactElement, memo, useState } from 'react';
 import { useStyles } from './styles';
+import { navigate } from '@reach/router';
 
 interface Props {
   location: string;
@@ -9,21 +9,31 @@ interface Props {
 const Navbar = memo(
   (props: Props): ReactElement => {
     const styles = useStyles();
+    const [location, setLocation] = useState(props.location);
 
     const getLinkStyle = (url: string) => {
-      if (props.location === url) return styles.active;
+      if (location === url) return styles.active;
+    };
+
+    const getStyles = (url: string) => {
+      return [getLinkStyle(url), styles.link].join(' ');
+    };
+
+    const navigateTo = (url: string): void => {
+      setLocation(`/${url}`);
+      navigate(url);
     };
 
     return (
       <>
         <div className={styles.navbar}>
           <nav className={styles.nav}>
-            <Link className={[getLinkStyle('/app/bands'), styles.link].join(' ')} to="app/bands">
+            <button className={getStyles('/bands')} onClick={(): void => navigateTo('bands')}>
               Bands
-            </Link>
-            <Link className={[getLinkStyle('/app/albums'), styles.link].join(' ')} to="app/albums">
+            </button>
+            <button className={getStyles('/albums')} onClick={(): void => navigateTo('albums')}>
               Albums
-            </Link>
+            </button>
           </nav>
         </div>
       </>

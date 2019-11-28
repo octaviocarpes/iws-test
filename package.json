@@ -32,7 +32,9 @@
   },
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"yarn run start:bff\"",
-    "start:bff": "export TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\", \"isolatedModules\":false}' && nodemon server/index.ts",
+    "start:dev": "concurrently \"react-scripts start\" \"yarn run start:bff:dev\"",
+    "start:bff": "export TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\", \"isolatedModules\":false}' && ts-node server/index.ts",
+    "start:bff:dev": "export TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\", \"isolatedModules\":false}' && nodemon server/index.ts",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

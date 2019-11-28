@@ -4,17 +4,16 @@ import { colors } from '../../styles/colors';
 export const useStyles = createUseStyles({
   navbar: {
     position: 'fixed',
-    bottom: 0,
+    bottom: 10,
     width: '80%',
     height: 75,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
+    borderRadius: 50,
     border: [`2px solid ${colors.primaryOrange}`],
-    boxShadow: ['0px -4px 19px -9px rgba(97,97,97,1)'],
+    boxShadow: ['0px 3px 10px 0px rgb(224, 220, 224)'],
   },
 
   nav: {
@@ -23,11 +22,11 @@ export const useStyles = createUseStyles({
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
+    borderRadius: 50,
   },
 
   link: {
+    backgroundColor: 'white',
     color: colors.primaryOrange,
     textDecoration: 'none',
     display: 'flex',
@@ -37,11 +36,18 @@ export const useStyles = createUseStyles({
     height: '100%',
     fontFamily: 'Montserrat',
     fontWeight: 'bold',
+    fontSize: 18,
+    border: ['none'],
     '&:first-child': {
       borderTopLeftRadius: 50,
+      borderBottomLeftRadius: 50,
     },
     '&:last-child': {
       borderTopRightRadius: 50,
+      borderBottomRightRadius: 50,
+    },
+    '&:focus': {
+      outline: 'none',
     },
   },
 
@@ -49,5 +55,6 @@ export const useStyles = createUseStyles({
     border: [`2px solid ${colors.primaryOrange}`],
     backgroundColor: colors.primaryOrange,
     color: 'white',
+    height: '105%',
   },
 });

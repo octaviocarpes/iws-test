@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { AppRouter } from './Router/index.jsx';
 import { createUseStyles } from 'react-jss';
+import Navbar from './Components/Navbar';
 
 const useStyles = createUseStyles({
   AppView: {
@@ -20,6 +21,7 @@ const App: React.FC = () => {
     <>
       <div className={useStyles().AppView}>
         <AppRouter />
+        <Navbar location="/bands" />
       </div>
     </>
   );

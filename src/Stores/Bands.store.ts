@@ -8,8 +8,12 @@ export class BandStore {
     this.bands = bands;
   }
 
+  private buildBandName(name: string): string {
+    return `${name.charAt(0).toUpperCase()}${name.substr(1, name.length)}`;
+  }
+
   public filterBandsByName(bandName: string): Band[] {
-    return this.bands.filter(band => band.name.startsWith(bandName));
+    return this.bands.filter(band => band.name.startsWith(this.buildBandName(bandName)));
   }
 
   @computed get filterBandsByRank(): Band[] {

@@ -5,6 +5,7 @@ import { getBands } from '../../Services/BandsService';
 import { useStyles } from './styles';
 
 import SearchBar from '../../Components/SearchBar';
+import BandCard from '../../Components/BandCard';
 
 const BandsView = observer(() => {
   const store = useContext(BandContext);
@@ -22,15 +23,29 @@ const BandsView = observer(() => {
       });
   }, [store]);
 
+  const renderAllBands = (): ReactElement => (
+    <>
+      {store.bands.map(band => (
+        <li key={band.id}>
+          <BandCard band={band} />
+        </li>
+      ))}
+    </>
+  );
+
+  const renderSearchBands = (): ReactElement => (
+    <>
+      {store.filterBandsByName(searchBand).map(band => (
+        <li key={band.id}>
+          <BandCard band={band} />
+        </li>
+      ))}
+    </>
+  );
+
   const renderBandList = (): ReactElement => {
     if (store.bands.length) {
-      return (
-        <ul>
-          {store.bands.map(band => (
-            <li key={band.id}>{band.name}</li>
-          ))}
-        </ul>
-      );
+      return <ul>{searchBand.length ? renderSearchBands() : renderAllBands()}</ul>;
     } else return <p>No bands Yet</p>;
   };
 
@@ -39,7 +54,7 @@ const BandsView = observer(() => {
       <BandContext.Provider value={store}>
         <>
           <div className={styles.bandView}>
-            <div>
+            <div className={styles.searchBar}>
               <SearchBar onChange={(text: string): void => setSearchBand(text)} />
             </div>
             <p>{searchBand}</p>
