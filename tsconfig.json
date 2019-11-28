@@ -1,9 +1,10 @@
 {
-  "extends": "./tsconfig.path.json",
-  "include": [
-    "src"
-  ],
+  "extends": "./path.json",
+  "include": ["src"],
   "compilerOptions": {
-    "module": "esnext"
+    "module": "esnext",
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "jsx": "react"
   }
 }
