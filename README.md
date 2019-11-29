@@ -1,3 +1,40 @@
+# IWS-TEST
+
+Hey there! This is my iws front-end application test!
+This test was made with:
+
+<ul>
+  <li>Yarn (package manager)</li>
+  <li>React JS (Js Framework)</li>
+  <li>Husky (used to run git hooks)</li>
+  <li>lint-staged (used to lint the code before adding it to the stash)</li>
+  <li>Typescript (used for static typechecking)</li>
+  <li>Node.js (used to build the BFF)</li>
+</ul>
+
+The purpose of this application is to show the bands and albums from a given API, as the API was not so complete i created a BFF server that helped me in getting and handling complex data structures, that was really good because the logic stayed on the server side, not impacting on the client side.
+
+## How to install:
+
+`git clone git@github.com:octaviocarpes/iws-test.git`
+`cd iws-test && yarn install`
+
+## How to run:
+
+`cd iws-test && yarn start`
+
+## How to run production build:
+
+<strong>Note: you need to have <a href="https://www.docker.com/">Docker installed</a></strong>
+
+`cd iws-test && yarn run build`
+`docker build -t iws-test .`
+`docker run -p 9000:9000 iws-test`
+
+## How to run tests:
+
+`cd iws-test && yarn tests`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
