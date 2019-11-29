@@ -2,16 +2,17 @@ import React, { useState, useEffect, useContext } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { observer } from 'mobx-react';
 import { navigate } from '@reach/router';
-import { getBandById, getBandAlbums } from '../../Services/BandsService';
 import { LoadingContext } from '../../Contexts/Loading.context';
-
-import Image from '../../Components/Image';
-
-import fallbackImage from '../../styles/img/album-icon.png';
-import { useStyles } from './styles';
+import { getBandById, getBandAlbums } from '../../Services/BandsService';
 import { Album } from '../../Models/Album';
 
-const BandsView = observer(props => {
+import { useStyles } from './styles';
+import fallbackImage from '../../styles/img/album-icon.png';
+
+import Image from '../../Components/Image';
+import AlbumCard from '../../Components/AlbumCard';
+
+const BandView = observer(props => {
   const loadingStore = useContext(LoadingContext);
   const [band, setBand] = useState<any>();
   const styles = useStyles();
@@ -51,7 +52,7 @@ const BandsView = observer(props => {
       {band !== undefined ? (
         <div className={styles.bandView}>
           <div className={styles.goBack}>
-            <button onClick={(): Promise<void> => navigate('../bands')}>Go Back</button>
+            <button onClick={(): void => window.history.back()}>Go Back</button>
           </div>
           <div className={styles.bandLogo}>
             <Image src={band.image} fallbackSrc={fallbackImage} alt="Band Image" />
@@ -67,9 +68,12 @@ const BandsView = observer(props => {
             </p>
           </div>
           <div className={styles.albums}>
-            <div>
+            <h2>Albums</h2>
+            <div className={styles.albumsWrapper}>
               {band.albums.map((album: Album) => (
-                <p key={album.id}>{album.name}</p>
+                <div className={styles.album} key={album.id}>
+                  <AlbumCard album={album} onTouch={(): Promise<void> => navigate(`../album/${album.id}`)} />
+                </div>
               ))}
             </div>
           </div>
@@ -81,4 +85,4 @@ const BandsView = observer(props => {
   );
 });
 
-export default BandsView;
+export default BandView;

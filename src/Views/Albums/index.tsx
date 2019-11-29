@@ -45,6 +45,7 @@ const AlbumsView = observer((props: Props) => {
     const wrappedElement = document.getElementById('albums-view');
     if (wrappedElement) {
       if (isBottom(wrappedElement)) {
+        document.addEventListener('scroll', trackScrolling);
         currentPage++;
         getAlbums();
       }
@@ -52,13 +53,14 @@ const AlbumsView = observer((props: Props) => {
   };
 
   useEffect(() => {
-    console.log('use effect');
     document.addEventListener('scroll', trackScrolling);
+    // eslint-disable-next-line
+    currentPage = 1;
     if (!store.albums.length) {
       getAlbums();
     }
     // eslint-disable-next-line
-  }, [store, loadingStore]);
+  }, [store, loadingStore, currentPage]);
 
   const renderAlbums = (): ReactElement => (
     <>

@@ -9,6 +9,7 @@ export class AlbumStore {
   }
 
   public appendAlbums(newAlbums: Album[]): void {
+    console.log('append albums');
     this.albums = [...this.albums, ...newAlbums];
   }
 

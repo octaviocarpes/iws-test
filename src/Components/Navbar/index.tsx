@@ -11,12 +11,12 @@ const Navbar = memo(
     const styles = useStyles();
     const [location, setLocation] = useState(props.location);
 
-    const getLinkStyle = (url: string) => {
-      if (location === url) return styles.active;
+    const getLinkStyle = (urls: string[]) => {
+      if (location === urls.filter(url => url === location)[0]) return styles.active;
     };
 
-    const getStyles = (url: string) => {
-      return [getLinkStyle(url), styles.link].join(' ');
+    const getStyles = (urls: string[]) => {
+      return [getLinkStyle(urls), styles.link].join(' ');
     };
 
     const navigateTo = (url: string): void => {
@@ -28,10 +28,10 @@ const Navbar = memo(
       <>
         <div className={styles.navbar}>
           <nav className={styles.nav}>
-            <button className={getStyles('/bands')} onClick={(): void => navigateTo('/bands')}>
+            <button className={getStyles(['/bands', '/'])} onClick={(): void => navigateTo('/bands')}>
               Bands
             </button>
-            <button className={getStyles('/albums')} onClick={(): void => navigateTo('/albums')}>
+            <button className={getStyles(['/albums'])} onClick={(): void => navigateTo('/albums')}>
               Albums
             </button>
           </nav>

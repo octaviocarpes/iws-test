@@ -9,6 +9,7 @@ import { useStyles } from './styles';
 import SearchBar from '../../Components/SearchBar';
 import BandCard from '../../Components/BandCard';
 import Navbar from '../../Components/Navbar';
+import ErrorComponent from '../../Components/ErrorComponent';
 
 interface Props {
   location: {
@@ -21,6 +22,7 @@ const BandsView = observer((props: Props) => {
   const store = useContext(BandContext);
   const loadingStore = useContext(LoadingContext);
   const [searchBand, setSearchBand] = useState('');
+  const [bandsError, setBandsError] = useState(false);
   const styles = useStyles();
 
   useEffect(() => {
@@ -34,6 +36,7 @@ const BandsView = observer((props: Props) => {
         .catch(error => {
           // TODO: notify user that was not possible to fetch the bands
           console.log(error);
+          setBandsError(true);
           loadingStore.setIsLoading(false);
         });
     }
@@ -62,7 +65,7 @@ const BandsView = observer((props: Props) => {
   const renderBandList = (): ReactElement => {
     if (store.bands.length) {
       return <ul className={styles.bandsList}>{searchBand.length ? renderSearchBands() : renderAllBands()}</ul>;
-    } else return <p>No bands Yet</p>;
+    } else return <> </>;
   };
 
   const render = (): ReactElement => (
@@ -73,8 +76,9 @@ const BandsView = observer((props: Props) => {
             <div className={styles.searchBar}>
               <SearchBar onChange={(text: string): void => setSearchBand(text)} />
             </div>
-            <p>{searchBand}</p>
-            <div className={styles.bandsWrapper}>{renderBandList()}</div>
+            <div className={styles.bandsWrapper}>
+              {bandsError ? <ErrorComponent message="Failed to load Bands, please try again." /> : renderBandList()}
+            </div>
           </div>
         </>
       </BandContext.Provider>

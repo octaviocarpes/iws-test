@@ -2,7 +2,7 @@ import { createUseStyles } from 'react-jss';
 import { colors } from '../../styles/colors';
 
 export const useStyles = createUseStyles({
-  bandView: {
+  albumView: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -38,7 +38,7 @@ export const useStyles = createUseStyles({
     },
   },
 
-  bandLogo: {
+  albumLogo: {
     border: ['1px solid black'],
     width: '100%',
     height: 400,
@@ -49,7 +49,7 @@ export const useStyles = createUseStyles({
     },
   },
 
-  bandHeader: {
+  albumHeader: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -84,7 +84,7 @@ export const useStyles = createUseStyles({
     },
   },
 
-  albums: {
+  tracks: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -96,14 +96,14 @@ export const useStyles = createUseStyles({
     },
   },
 
-  albumsWrapper: {
+  tracksWrapper: {
     width: '90%',
     paddingLeft: 24,
     paddingRight: 24,
     paddingBottom: 10,
   },
 
-  album: {
+  track: {
     marginBottom: 15,
   },
 });

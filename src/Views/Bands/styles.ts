@@ -18,6 +18,7 @@ export const useStyles = createUseStyles({
 
   bandsWrapper: {
     width: '100%',
+    marginTop: 20,
   },
 
   bandsList: {
