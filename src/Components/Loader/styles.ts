@@ -2,7 +2,7 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
   loaderBackground: {
-    position: 'absolute',
+    position: 'fixed',
     top: 0,
     width: '100%',
     height: '100%',

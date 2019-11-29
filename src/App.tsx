@@ -26,7 +26,7 @@ const App: React.FC = observer(() => {
         <div className={useStyles().AppView}>
           <AppRouter />
         </div>
-        <AppLoader visible={store.isLoading} />
+        <AppLoader />
       </LoadingContext.Provider>
     </>
   );

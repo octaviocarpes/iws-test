@@ -2,7 +2,7 @@ import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { AlbumContext } from '../../Contexts/Albums.context';
 import { LoadingContext } from '../../Contexts/Loading.context';
-import { getAlbums } from '../../Services/AlbumsService';
+import { getAlbumsByPage } from '../../Services/AlbumsService';
 import { useStyles } from './styles';
 
 import Navbar from '../../Components/Navbar';
@@ -20,22 +20,44 @@ const AlbumsView = observer((props: Props) => {
   const store = useContext(AlbumContext);
   const loadingStore = useContext(LoadingContext);
   const [searchAlbum, setSearchAlbum] = useState('');
+  let currentPage = 1;
   const styles = useStyles();
 
-  useEffect(() => {
-    if (!store.albums.length) {
-      loadingStore.setIsLoading(true);
-      getAlbums()
-        .then(response => {
-          store.setAlbums(response.data);
-          loadingStore.setIsLoading(false);
-        })
-        .catch(error => {
-          // TODO: notify user that was not possible to fetch the bands
-          console.log(error);
-          loadingStore.setIsLoading(false);
-        });
+  const getAlbums = (): void => {
+    loadingStore.setIsLoading(true);
+    getAlbumsByPage(currentPage)
+      .then(response => {
+        store.appendAlbums(response.data);
+        loadingStore.setIsLoading(false);
+      })
+      .catch(error => {
+        // TODO: notify user that was not possible to fetch the bands
+        console.log(error);
+        loadingStore.setIsLoading(false);
+      });
+  };
+
+  const isBottom = (el: HTMLElement): boolean => {
+    return el.getBoundingClientRect().bottom <= window.innerHeight;
+  };
+
+  const trackScrolling = (): void => {
+    const wrappedElement = document.getElementById('albums-view');
+    if (wrappedElement) {
+      if (isBottom(wrappedElement)) {
+        currentPage++;
+        getAlbums();
+      }
     }
+  };
+
+  useEffect(() => {
+    console.log('use effect');
+    document.addEventListener('scroll', trackScrolling);
+    if (!store.albums.length) {
+      getAlbums();
+    }
+    // eslint-disable-next-line
   }, [store, loadingStore]);
 
   const renderAlbums = (): ReactElement => (
@@ -67,7 +89,7 @@ const AlbumsView = observer((props: Props) => {
   const render = (): ReactElement => (
     <>
       <AlbumContext.Provider value={store}>
-        <div className={styles.albumView}>
+        <div id="albums-view" className={styles.albumView}>
           <div className={styles.searchBar}>
             <SearchBar onChange={(text: string): void => setSearchAlbum(text)} />
           </div>

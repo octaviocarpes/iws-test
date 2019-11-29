@@ -8,6 +8,10 @@ export class AlbumStore {
     this.albums = albums;
   }
 
+  public appendAlbums(newAlbums: Album[]): void {
+    this.albums = [...this.albums, ...newAlbums];
+  }
+
   private buildAlbumName(name: string): string {
     return `${name.charAt(0).toUpperCase()}${name.substr(1, name.length)}`;
   }

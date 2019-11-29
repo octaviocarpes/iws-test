@@ -20,12 +20,26 @@ export class AlbumsRoute {
   private buildRoutes(): void {
     this.getAlbumsRoute();
     this.getAlbumByIdRoute();
+    this.getAlbumsByPageRoute();
   }
 
   private getAlbumsRoute(): void {
     this.router.get('', (req, res) => {
       AlbumsController.getInstance()
         .getAlbums()
+        .then(response => {
+          res.status(200).send(response);
+        })
+        .catch(error => {
+          res.send(error);
+        });
+    });
+  }
+
+  private getAlbumsByPageRoute(): void {
+    this.router.get('/page/:page', (req, res) => {
+      AlbumsController.getInstance()
+        .getAlbumsByPage(req.params.page)
         .then(response => {
           res.status(200).send(response);
         })
