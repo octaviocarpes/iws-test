@@ -27,9 +27,11 @@ The purpose of this application is to show the bands and albums from a given API
 
 <strong>Note: you need to have <a href="https://www.docker.com/">Docker installed</a></strong>
 
-<p>`cd iws-test && yarn run build`</p>
-<p>`docker build -t iws-test .`</p>
-<p>`docker run -p 9000:9000 iws-test`</p>
+`cd iws-test && yarn run build`
+
+`docker build -t iws-test .`
+
+`docker run -p 9000:9000 iws-test`
 
 ## How to run tests:
 
