@@ -20,9 +20,14 @@ const album: Album = {
 
 afterEach(cleanup);
 
-describe('AlbumCard', () => {
-  it('should contains name', () => {
+describe('<AlbumCard />', () => {
+  it('should contains the albums name', () => {
     const { getByText } = render(<AlbumCard album={album} />);
     getByText('Album');
+  });
+
+  it('should render the component correctly', () => {
+    const tree = render(<AlbumCard album={album} />);
+    expect(tree).toMatchSnapshot();
   });
 });
