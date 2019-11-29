@@ -34,8 +34,6 @@ const BandsView = observer((props: Props) => {
           loadingStore.setIsLoading(false);
         })
         .catch(error => {
-          // TODO: notify user that was not possible to fetch the bands
-          console.log(error);
           setBandsError(true);
           loadingStore.setIsLoading(false);
         });

@@ -15,6 +15,7 @@
     "@types/react": "^16.9.13",
     "@types/react-dom": "16.9.4",
     "@types/react-loader-spinner": "^3.1.0",
+    "@types/testing-library__react": "^9.1.2",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.0",
@@ -59,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^9.3.2",
     "@types/react-html-parser": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^2.9.0",
     "@typescript-eslint/parser": "^2.9.0",
@@ -70,8 +72,7 @@
     "jest": "^24.9.0",
     "lint-staged": "^9.5.0",
     "nodemon": "^2.0.1",
-    "prettier": "^1.19.1",
-    "react-testing-library": "^8.0.1"
+    "prettier": "^1.19.1"
   },
   "husky": {
     "hooks": {

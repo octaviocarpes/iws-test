@@ -3,7 +3,7 @@ import { colors } from '../../styles/colors';
 
 export const useStyles = createUseStyles({
   cardWrapper: {
-    width: '50%',
+    width: '100%',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -21,12 +21,16 @@ export const useStyles = createUseStyles({
     fontWeight: 'bold',
     color: colors.primaryGray,
     whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: '90%',
   },
 
   albumInfo: {
+    width: '90%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
-    alignItems: 'left',
+    alignItems: 'start',
   },
 });

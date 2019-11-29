@@ -4,10 +4,12 @@ import { AlbumContext } from '../../Contexts/Albums.context';
 import { LoadingContext } from '../../Contexts/Loading.context';
 import { getAlbumsByPage } from '../../Services/AlbumsService';
 import { useStyles } from './styles';
+import { navigate } from '@reach/router';
 
 import Navbar from '../../Components/Navbar';
 import SearchBar from '../../Components/SearchBar';
 import AlbumCard from '../../Components/AlbumCard';
+import ErrorComponent from '../../Components/ErrorComponent';
 
 interface Props {
   location: {
@@ -20,6 +22,7 @@ const AlbumsView = observer((props: Props) => {
   const store = useContext(AlbumContext);
   const loadingStore = useContext(LoadingContext);
   const [searchAlbum, setSearchAlbum] = useState('');
+  const [albumsError, setAlbumsError] = useState(false);
   let currentPage = 1;
   const styles = useStyles();
 
@@ -31,8 +34,7 @@ const AlbumsView = observer((props: Props) => {
         loadingStore.setIsLoading(false);
       })
       .catch(error => {
-        // TODO: notify user that was not possible to fetch the bands
-        console.log(error);
+        setAlbumsError(true);
         loadingStore.setIsLoading(false);
       });
   };
@@ -66,7 +68,7 @@ const AlbumsView = observer((props: Props) => {
     <>
       {store.albums.map(album => (
         <li key={album.id}>
-          <AlbumCard album={album} />
+          <AlbumCard onTouch={(): Promise<void> => navigate(`../album/${album.id}`)} album={album} />
         </li>
       ))}
     </>
@@ -76,7 +78,7 @@ const AlbumsView = observer((props: Props) => {
     <>
       {store.filterAlbumsByName(searchAlbum).map(album => (
         <li key={album.id}>
-          <AlbumCard album={album} />
+          <AlbumCard onTouch={(): Promise<void> => navigate(`../album/${album.id}`)} album={album} />
         </li>
       ))}
     </>
@@ -96,7 +98,9 @@ const AlbumsView = observer((props: Props) => {
             <SearchBar onChange={(text: string): void => setSearchAlbum(text)} />
           </div>
           <p>{searchAlbum}</p>
-          <div className={styles.albumsWrapper}>{renderAlbumsList()}</div>
+          <div className={styles.albumsWrapper}>
+            {albumsError ? <ErrorComponent message="Failed to load Albums, please try again." /> : renderAlbumsList()}
+          </div>
         </div>
       </AlbumContext.Provider>
       <Navbar location={location.pathname} />

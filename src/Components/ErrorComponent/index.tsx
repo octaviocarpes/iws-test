@@ -13,10 +13,10 @@ const ErrorComponent = memo(
     return (
       <>
         <div className={styles.error}>
-          <div>
+          <div className={styles.image}>
             <Image src={imageSrc} fallbackSrc={imageSrc} alt="error-icon" />
           </div>
-          <h1>{props.message}</h1>
+          <h2>{props.message}</h2>
         </div>
       </>
     );

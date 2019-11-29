@@ -52,14 +52,12 @@ export class AlbumsController {
   }
 
   public async getAlbumsByPage(page: string): Promise<Album[]> {
-    if (!this.albums.length) {
-      try {
-        const { data } = await this.albumsService.getAlbums();
-        return this.pageAlbums(parseInt(page), data);
-      } catch (error) {
-        return error;
-      }
-    } else return this.albums;
+    try {
+      const { data } = await this.albumsService.getAlbums();
+      return this.pageAlbums(parseInt(page), data);
+    } catch (error) {
+      return error;
+    }
   }
 
   public async getAlbumById(id: string): Promise<Album[]> {

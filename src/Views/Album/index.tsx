@@ -33,10 +33,15 @@ const AlbumView = observer(props => {
     // eslint-ignore-next-line
   }, [album, loadingStore, props]);
 
+  const parseSeconds = (seconds: number): string => {
+    if (seconds.toString().length === 1) return `0${seconds}`;
+    else return seconds.toString();
+  };
+
   const calculateDuration = (time: number): string => {
     const minutes = Math.floor(time / 60);
     const seconds = time - minutes * 60;
-    return `${minutes}:${seconds}`;
+    return `${minutes}:${parseSeconds(seconds)}`;
   };
 
   return (
